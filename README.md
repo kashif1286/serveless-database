@@ -125,3 +125,81 @@ click test
 
 3.CREAT DYNAMODB TABLE
 ![create-dynamo-table](https://github.com/user-attachments/assets/1b972631-3915-424d-b6e3-2f30cf502bfe)
+
+4.CREAT API(RESTAPI)
+![create-api-button](https://github.com/user-attachments/assets/ea3fb7ec-c11c-4cf3-bd76-a8c889a1ec9f)
+
+4.1 BUILD REST API
+![build-rest-api](https://github.com/user-attachments/assets/acfb0cee-aa8f-40b1-93e8-3263a2cd389b)
+![create-new-api (1) DYANAMOdb](https://github.com/user-attachments/assets/578d7af7-bb15-42be-a003-9c3333d805c8)
+
+4.2 CREAT RESOURSES
+![create-api-resource1](https://github.com/user-attachments/assets/b17cd177-a8c3-43e5-8a85-a36a98205a58)
+![create-resource-name](https://github.com/user-attachments/assets/9296e814-ec72-4187-9ba6-60550568251e)
+
+4.3 CREAT METHOD
+![create-method-1 (1)](https://github.com/user-attachments/assets/e86cce83-95ec-4797-b71d-0e7ba6ef7f10)
+![create-method-2 (1)](https://github.com/user-attachments/assets/841b7ff9-6fd2-4542-8d5d-9a3014a5ca75)
+![create-lambda-integration](https://github.com/user-attachments/assets/7d0f39b6-8024-4a85-a866-4d9717acd6e2)
+
+4.4 DEPLOY METHOD
+![deploy-api-1 (1)](https://github.com/user-attachments/assets/8e8765cb-b16c-4cab-be09-0dc6a3cbb18f)
+![deploy-api-2 (1)](https://github.com/user-attachments/assets/d3bf14a1-c74d-449b-a4e9-e2660b6a594a)
+![copy-invoke-url](https://github.com/user-attachments/assets/e454240a-06f9-426a-9498-fdf3615d8551)
+
+5. RUNING SOULUTION
+
+5.1 The Lambda function supports using the create operation to create an item in your DynamoDB table. To request this operation, use the following JSON:
+
+        {
+             "operation": "create",
+             "tableName": "lambda-apigateway",
+             "payload": {
+                 "Item": {
+                     "id": "1234ABCD",
+                     "number": 5
+                }
+           }
+      }
+
+5.2 To execute our API from local machine, we are going to use Postman and Curl command. You can choose either method based on your convenience and familiarity.
+               To run this from Postman, select "POST" , paste the API invoke url. Then under "Body" select "raw" and paste the above JSON.
+               Click "Send". API should execute and return "HTTPStatusCode" 200.
+               
+![create-from-postman](https://github.com/user-attachments/assets/bd34886c-079a-415d-9fde-2146a8a775f9)
+         To run this from terminal using Curl, run the below
+
+        $ curl -X POST -d "{\"operation\":\"create\",\"tableName\":\"lambda-apigateway\",\"payload\":{\"Item\":{\"id\":\"1\",\"name\":\"Bob\"}}}" https://$API.execute-api.$REGION.amazonaws.com/prod/DynamoDBManager
+
+5.3 To validate that the item is indeed inserted into DynamoDB table, go to Dynamo console, select "lambda-apigateway"
+table, select "Items" tab, and the newly inserted item should be displayed.
+
+![dynamo-item](https://github.com/user-attachments/assets/4f4e5de2-39fd-41ae-a7bf-b3866a50ddf4)
+
+5.4 To get all the inserted items from the table, we can use the "list" operation of Lambda using the same API. 
+Pass the following JSON to the API, and it will return all the items from the Dynamo table
+
+
+        {
+             "operation": "list",
+             "tableName": "lambda-apigateway",
+             "payload": {
+             }
+        }
+
+![dynamo-item-list (1)](https://github.com/user-attachments/assets/035f4ca2-3d28-456e-bf3d-20c2c46aee6c)
+
+Congratulation Your Project SuccessfullyRun..............
+
+CLEAN UP ALL SERVICES
+
+
+         
+
+
+
+
+
+
+
+
